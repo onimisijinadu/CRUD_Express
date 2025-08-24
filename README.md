@@ -1,140 +1,85 @@
-# 📘 Express + PostgreSQL CRUD API
+# Express + PostgreSQL CRUD API
 
-# A simple CRUD (Create, Read, Update, Delete) REST API built with Node.js, Express, and PostgreSQL.
+A simple **CRUD (Create, Read, Update, Delete)** REST API built with **Node.js**, **Express**, and **PostgreSQL**.
 
-# Tested using Postman.
+Tested using **Postman**.
 
-## 🚀 Features
+---
 
-# Create new users
+## Project Structure
 
-# Retrieve all users or a single user by ID
-
-# Update user details
-
-# Delete users
-
-# PostgreSQL database integration
-
-# Project structure
-
-express_CRUD/
+CRUD_Express/
 ├── controllers/
-│ └── users.js # CRUD logic for users
+│ └── users.js # Route logic for user operations
 ├── routes/
-│ └── users.js # API End point using router.express()
-├── postman # screenshots of postman tests
-├── db.js # Database connection setup (PostgreSQL client/pool)
-├── index.js # Entry point, Express app + routes
+│ └── users.js # Express router for /users
+├── postman/ # Postman request & response screenshots
+├── db.js # PostgreSQL client or pool connection setup
+├── index.js # Entry point: configures Express app and routes
 ├── package.json # Project dependencies and scripts
 └── README.md # Project documentation
 
-## 🛠️ Requirements
+---
 
-# \* [Node.js](https://nodejs.org/) v16+
+## Requirements
 
-# \* [PostgreSQL](https://www.postgresql.org/) v13+
-
-# \* npm (comes with Node.js)
-
-4. **Run the server**
-
-# bash
-
-# npm start
-
-# Server runs on [http://localhost:5000](http://localhost:5000)
-
-## 📡 API Endpoints
-
-### 1. Get all users
-
-```http
-GET /users
-```
-
-**Response**
-
-```json
-[
-  { "id": 1, "name": "Alice", "email": "alice@example.com", "age": 23 },
-  { "id": 2, "name": "Bob", "email": "bob@example.com", "age": 30 }
-]
-```
-
-`(./postman/Screenshot%20(21).png)`
+- **Node.js** v16+
+- **PostgreSQL** v13+
+- **npm** (comes with Node.js)
 
 ---
 
-### 2. Get user by ID
+## Setup & Installation
 
-```http
-GET /users/:id
-```
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/onimisijinadu/CRUD_Express.git
+   cd CRUD_Express
+   ```
 
-**Example:** `GET /users/1`
-`(./postman/Screenshot%20(25).png)`
+npm install
 
----
+Configure PostgreSQL
 
-### 3. Create a new user
+Create a database (e.g., mydb)
 
-```http
-POST /users
-```
+Create the users table:
+CREATE TABLE users (
+id SERIAL PRIMARY KEY,
+name VARCHAR(100),
+email VARCHAR(100) UNIQUE,
+age INT
+);
+Update db.js with your connection details (user, password, host, etc.).
 
-`(./postman/Screenshot%20(24).png)`
-**Body (JSON)**
+Start the server
 
-```json
-{
-  "name": "Charlie",
-  "email": "charlie@example.com",
-  "age": 28
-}
-```
+npm start
 
----
+Server will run at: http://localhost:5000
 
-### 4. Update a user
+API Endpoints
+Method Endpoint Description Request Body Example
+GET /users Get all users —
+GET /users/:id Get a user by ID —
+POST /users Create a new user { "name": "Alice", "email": "alice@example.com", "age": 23 }
+PATCH /users/:id Update a user { "name": "New Name", "email": "new@example.com", "age": 30 }
+DELETE /users/:id Delete a user —
+Postman Testing
 
-```http
-PATCH /users/:id
-```
+Import these endpoints into Postman, set up the necessary JSON bodies for POST and PATCH, and verify the responses. Screenshots are included below from the postman/ folder:
 
-**Body (JSON)**
+Get all users: postman/Screenshot (21).png
 
-```json
-{
-  "name": "Updated Name",
-  "email": "updated@example.com",
-  "age": 35
-}
-```
+Create user: postman/Screenshot (24).png
 
-`(./postman/Screenshot%20(26).png)`
+Get user by ID: postman/Screenshot (25).png
 
-### 5. Delete a user
+Update user: postman/Screenshot (26).png
 
-```http
-DELETE /users/:id
-```
+Delete user or other request: (Add whichever relevant screenshot)
 
-## `(./postman/Screenshot%20(22).png)`
-
-## 🧪 Testing with Postman
-
-- Import endpoints into **Postman**
-- Use the provided JSON body for POST and PUT requests
-- Verify responses
-- Screenshots of Postman requests & responses were included here in the README (using `(./images/screenshot.png)`)
-
----
-
-## 📜 License
-
-This project is for learning purposes (Operating Systems / Database / Web Development coursework).
-
----
-"# express_crud_api" 
-"# express_crud_api" 
+![Get all users](<postman/Screenshot%20(21).png>)
+![Create user](<postman/Screenshot%20(24).png>)
+![Get user by ID](<postman/Screenshot%20(25).png>)
+![Update user](<postman/Screenshot%20(26).png>)
